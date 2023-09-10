@@ -30,6 +30,14 @@ namespace CodeChallenge.Config
             {
                 app.UseDeveloperExceptionPage();
                 SeedEmployeeDB();
+                // Add swagger
+                app.UseSwagger();
+                app.UseSwaggerUI(options =>
+                {
+                    // serves swagger at the root endpoint of the api
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                    options.RoutePrefix = string.Empty;
+                });
             }
 
             app.UseAuthorization();
@@ -46,6 +54,9 @@ namespace CodeChallenge.Config
             services.AddScoped<IReportingStructureService, ReportingStructureService>();
 
             services.AddControllers();
+            // Add swagger
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
         }
 
         private void SeedEmployeeDB()
