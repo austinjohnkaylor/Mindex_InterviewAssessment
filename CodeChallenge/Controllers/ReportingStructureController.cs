@@ -8,10 +8,10 @@ namespace CodeChallenge.Controllers;
 [Route("api/employee/{id}/reporting-structure")]
 public class ReportingStructureController : ControllerBase
 {
-    private readonly ILogger _logger;
+    private readonly ILogger<ReportingStructureController> _logger;
     private readonly IReportingStructureService _reportingStructureService;
 
-    public ReportingStructureController(ILogger logger, IReportingStructureService reportingStructureService)
+    public ReportingStructureController(ILogger<ReportingStructureController> logger, IReportingStructureService reportingStructureService)
     {
         _logger = logger;
         _reportingStructureService = reportingStructureService;
