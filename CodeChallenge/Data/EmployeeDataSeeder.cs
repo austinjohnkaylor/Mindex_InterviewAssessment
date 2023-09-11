@@ -18,15 +18,14 @@ namespace CodeChallenge.Data
             _employeeContext = employeeContext;
         }
 
-        public async Task Seed()
+        public void Seed()
         {
-            if(!_employeeContext.Employees.Any())
-            {
-                List<Employee> employees = LoadEmployees();
-                _employeeContext.Employees.AddRange(employees);
+            if (_employeeContext.Employees.Any()) return;
+            
+            List<Employee> employees = LoadEmployees();
+            _employeeContext.Employees.AddRange(employees);
 
-                await _employeeContext.SaveChangesAsync();
-            }
+            _employeeContext.SaveChanges();
         }
 
         private List<Employee> LoadEmployees()
@@ -51,17 +50,15 @@ namespace CodeChallenge.Data
 
             employees.ForEach(employee =>
             {
+                if (employee.DirectReports == null) return;
                 
-                if (employee.DirectReports != null)
+                var referencedEmployees = new List<Employee>(employee.DirectReports.Count);
+                employee.DirectReports.ForEach(report =>
                 {
-                    var referencedEmployees = new List<Employee>(employee.DirectReports.Count);
-                    employee.DirectReports.ForEach(report =>
-                    {
-                        var referencedEmployee = employeeIdRefMap.First(e => e.Id == report.EmployeeId).EmployeeRef;
-                        referencedEmployees.Add(referencedEmployee);
-                    });
-                    employee.DirectReports = referencedEmployees;
-                }
+                    var referencedEmployee = employeeIdRefMap.First(e => e.Id == report.EmployeeId).EmployeeRef;
+                    referencedEmployees.Add(referencedEmployee);
+                });
+                employee.DirectReports = referencedEmployees;
             });
         }
     }
