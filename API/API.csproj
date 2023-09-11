@@ -1,0 +1,61 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.10" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="..\CodeChallenge\Controllers\EmployeeController.cs">
+        <Link>Controllers\EmployeeController.cs</Link>
+      </Compile>
+      <Compile Include="..\CodeChallenge\Controllers\ReportingStructureController.cs">
+        <Link>Controllers\ReportingStructureController.cs</Link>
+      </Compile>
+      <Compile Include="..\CodeChallenge\Data\EmployeeContext.cs">
+        <Link>Data\EmployeeContext.cs</Link>
+      </Compile>
+      <Compile Include="..\CodeChallenge\Data\EmployeeDataSeeder.cs">
+        <Link>Data\EmployeeDataSeeder.cs</Link>
+      </Compile>
+      <Compile Include="..\CodeChallenge\Models\Employee.cs">
+        <Link>Models\Employee.cs</Link>
+      </Compile>
+      <Compile Include="..\CodeChallenge\Models\ReportingStructure.cs">
+        <Link>Models\ReportingStructure.cs</Link>
+      </Compile>
+      <Compile Include="..\CodeChallenge\Repositories\EmployeeRespository.cs">
+        <Link>Repositories\EmployeeRespository.cs</Link>
+      </Compile>
+      <Compile Include="..\CodeChallenge\Repositories\IEmployeeRepository.cs">
+        <Link>Repositories\IEmployeeRepository.cs</Link>
+      </Compile>
+      <Compile Include="..\CodeChallenge\Services\EmployeeService.cs">
+        <Link>Services\EmployeeService.cs</Link>
+      </Compile>
+      <Compile Include="..\CodeChallenge\Services\IEmployeeService.cs">
+        <Link>Services\IEmployeeService.cs</Link>
+      </Compile>
+      <Compile Include="..\CodeChallenge\Services\IReportingStructureService.cs">
+        <Link>Services\IReportingStructureService.cs</Link>
+      </Compile>
+      <Compile Include="..\CodeChallenge\Services\ReportingStructureService.cs">
+        <Link>Services\ReportingStructureService.cs</Link>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\CodeChallenge\resources\EmployeeSeedData.json">
+        <Link>resources\EmployeeSeedData.json</Link>
+      </Content>
+    </ItemGroup>
+
+</Project>
